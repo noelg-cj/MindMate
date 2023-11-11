@@ -1,5 +1,6 @@
 import React from 'react'
 import BotMessage from '../components/BotMessage';
+import UserMessage from '../components/userMessage';
 
 const Chat = () => {
   return (
@@ -11,6 +12,7 @@ const Chat = () => {
         </div>
         <div>
             <BotMessage message={"Hi! How are you feeling today?"} />
+            <UserMessage message={"I'm not feeling that good..."} />
         </div>
     </div>
   )
