@@ -1,11 +1,11 @@
 import React from 'react';
 import {useState} from 'react'
 import BotMessage from '../components/BotMessage';
-import UserMessage from '../components/userMessage';
+import UserMessage from '../components/UserMessage';
 import TextInput from '../components/TextInput';
 
 import { BiSolidMicrophone } from 'react-icons/bi';
-import VoiceInput from '../components/voiceInput';
+import VoiceInput from '../components/VoiceInput';
 
 const Chat = () => {
     const [isVoiceActivated, useVoice] = useState(false);
