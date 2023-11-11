@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { IoMdSend } from 'react-icons/io'
 
-const TextInput = () => {
+const TextInput = ({ handleMessageAdd }) => {
   const [message, setMessage] = useState('');
 
   const handleChange = (event) => {
@@ -11,6 +11,7 @@ const TextInput = () => {
   const submit = (event) => {
     event.preventDefault();
     console.log("Submitted message - ", message);
+    handleMessageAdd("user", message);
   }
 
   return (
