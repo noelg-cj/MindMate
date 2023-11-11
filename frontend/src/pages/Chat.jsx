@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useState} from 'react'
 import BotMessage from '../components/BotMessage';
 import UserMessage from '../components/UserMessage';
@@ -10,6 +10,15 @@ import VoiceInput from '../components/VoiceInput';
 const Chat = () => {
     const [isVoiceActivated, useVoice] = useState(false);
     const [chatHistory, addMessage] = useState([]);
+
+    useEffect(() => {
+        fetch("/predict").then((res) => 
+            res.json().then((data) => {
+                addMessage([...chatHistory, data]);
+                console.log(chatHistory);
+            })
+        )
+    }, []);
 
     const handleMessaggeAdd = (type, message) => {
         const msg = {
