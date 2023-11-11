@@ -24,7 +24,7 @@ const Chat = () => {
                     Use Voice
                 </button>
             </div>
-            <div className='h-[90vh] overflow-scroll'>
+            <div className='h-[77vh] overflow-y-scroll'>
                 <BotMessage message={"Hi! How are you feeling today?"} />
                 <UserMessage message={"I'm not feeling that good..."} />
                 <BotMessage message={"That's not good....what's wrong?"} />
