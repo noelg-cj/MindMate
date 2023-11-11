@@ -5,7 +5,7 @@ import UserMessage from '../components/UserMessage';
 import TextInput from '../components/TextInput';
 
 import { BiSolidMicrophone } from 'react-icons/bi';
-import VoiceInput from '../components/voiceInput';
+import VoiceInput from '../components/VoiceInput';
 
 const Chat = () => {
     const [isVoiceActivated, useVoice] = useState(false);
