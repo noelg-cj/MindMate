@@ -13,7 +13,7 @@ def predict():
     try:
         chat = request.get_json()
         result = bot(chat.get('data'))
-        return jsonify({"data":result.get('answer')})
+        return jsonify({"data":result.get('answer'),"type":"bot"})
         # return chat
     except Exception as e:
         return jsonify({"error":e})
