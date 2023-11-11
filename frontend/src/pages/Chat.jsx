@@ -1,16 +1,28 @@
-import React from 'react'
+import React from 'react';
+import {useState} from 'react'
 import BotMessage from '../components/BotMessage';
 import UserMessage from '../components/userMessage';
 import TextInput from '../components/TextInput';
 
+import { BiSolidMicrophone } from 'react-icons/bi';
+import VoiceInput from '../components/voiceInput';
+
 const Chat = () => {
+    const [isVoiceActivated, useVoice] = useState(false);
   return (
-    <div className='w-full flex flex-col justify-between'>
-        <div>
+    <div className='w-full flex justify-between'>
+        <div className={`${isVoiceActivated ? 'w-7/12' : 'w-full'}`}>
             <div className='w-full h-16 bg-slate-300 flex items-center p-5 shadow-lg' >
                 <p className='text-xl font-semibold'>
                     Talk with me
                 </p>
+                <button className='flex items-center gap-2 bg-[#5E9FF2] hover:bg-[#327AD9] p-3 rounded-md mx-12' onClick={() => {
+                    if (isVoiceActivated) useVoice(false);
+                    else useVoice(true);
+                }}>
+                    <BiSolidMicrophone />
+                    Use Voice
+                </button>
             </div>
             <div className='h-[90vh] overflow-scroll'>
                 <BotMessage message={"Hi! How are you feeling today?"} />
@@ -22,9 +34,12 @@ const Chat = () => {
                 <BotMessage message={"I'm really sorry to hear that you're going through such a tough time, and I want you to know that you're not alone in feeling this way. It's completely normal to face challenges and periods of emotional distress in life."} />
                 <UserMessage message={"Thanks for that!"} />
             </div>
+            <div className='p-5 fixed w-10/12 bottom-1'>
+                <TextInput />
+            </div>
         </div>
-        <div className='p-5 fixed w-10/12 bottom-1'>
-            <TextInput />
+        <div className={`${isVoiceActivated ? 'w-5/12' : 'hidden'}`}>
+            <VoiceInput />
         </div>
     </div>
   )
