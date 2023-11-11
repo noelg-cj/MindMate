@@ -9,6 +9,18 @@ import VoiceInput from '../components/VoiceInput';
 
 const Chat = () => {
     const [isVoiceActivated, useVoice] = useState(false);
+    const [chatHistory, addMessage] = useState([]);
+
+    const handleMessaggeAdd = (type, message) => {
+        const msg = {
+            type: type,
+            message: message
+        }
+
+        addMessage([...chatHistory, msg]);
+        console.log(chatHistory);
+    }
+
   return (
     <div className='w-full flex justify-between'>
         <div className={`${isVoiceActivated ? 'w-7/12' : 'w-full'}`}>
@@ -24,7 +36,7 @@ const Chat = () => {
                     Use Voice
                 </button>
             </div>
-            <div className='h-[90vh] overflow-scroll'>
+            <div className='h-[77vh] overflow-y-scroll'>
                 <BotMessage message={"Hi! How are you feeling today?"} />
                 <UserMessage message={"I'm not feeling that good..."} />
                 <BotMessage message={"That's not good....what's wrong?"} />
@@ -33,9 +45,18 @@ const Chat = () => {
                 <UserMessage message={"I wish I could pinpoint exactly what's causing me to feel this way, but it's not that simple. It's like a combination of various factors piling up. I've been dealing with a lot of stress at work, and it feels like I'm constantly under pressure to meet deadlines and perform well. On top of that, there are some personal issues I'm grappling with, like problems in my relationships and a sense of loneliness. It's all become overwhelming, and I'm finding it hard to cope."} />
                 <BotMessage message={"I'm really sorry to hear that you're going through such a tough time, and I want you to know that you're not alone in feeling this way. It's completely normal to face challenges and periods of emotional distress in life."} />
                 <UserMessage message={"Thanks for that!"} />
+                {chatHistory.map(chat => {
+                    if (chat.type == "user") {
+                        return <UserMessage message={chat.message} />
+                    }
+                    else {
+                        return <BotMessage message={chat.message} />
+                    }
+                })}
             </div>
+
             <div className='p-5 fixed w-10/12 bottom-1'>
-                <TextInput />
+                <TextInput handleMessageAdd={handleMessaggeAdd} />
             </div>
         </div>
         <div className={`${isVoiceActivated ? 'w-5/12' : 'hidden'}`}>
