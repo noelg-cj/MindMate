@@ -7,7 +7,7 @@ We believe that technology can play a pivotal role in improving mental health an
 That's why we're excited to introduce our innovative project - MindMate, an AI-powered chatbot, a true companion for those in need.
 <br />
 ## What is mindmate? 
-![UI_coded](https://github.com/noelg-cj/MindMate/assets/76249580/62fca67e-af04-4335-a1bf-85c0ba457df4)
+![UI_coded_2](https://github.com/noelg-cj/MindMate/assets/76249580/94657295-2e66-41c3-942a-fac712ce45b3)
 
 It is not just a chatbot - it is a supportive friend It offers a safe and non-judgmental space for individuals to express their feelings and thoughts. 
 It actively listens, understands, and provides motivation and encouragement to help people face their challenges with courage.<br />
