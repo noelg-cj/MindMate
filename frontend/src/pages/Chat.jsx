@@ -9,24 +9,58 @@ import VoiceInput from '../components/VoiceInput';
 
 const Chat = () => {
     const [isVoiceActivated, useVoice] = useState(false);
+    const [userNumber, setNumber] = useState(0);
     const [chatHistory, addMessage] = useState([]);
+    const [messageData, setData] = useState("");
 
-    useEffect(() => {
-        fetch("/predict").then((res) => 
+    /* useEffect(() => {
+        fetch("http://127.0.0.1:8080/predict").then(
+            res => res.json()
+        ).then(
+            data => {
+                setData(data);
+                addMessage([...chatHistory, data])
+                console.log(chatHistory, data);
+            }
+        )
+    }, [userNumber]); */
+
+    /* useEffect(() => {
+        console.log("Started");
+        fetch("/predict").then((res) => {
+            console.log(res.json());
             res.json().then((data) => {
+                console.log(data);
                 addMessage([...chatHistory, data]);
                 console.log(chatHistory);
-            })
+            })}
         )
-    }, []);
+    }, []); */
 
     const handleMessaggeAdd = (type, message) => {
         const msg = {
             type: type,
             message: message
         }
+        console.log(msg);
 
         addMessage([...chatHistory, msg]);
+        const response = fetch("http://127.0.0.1:8080/predict", {
+            method : 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(msg)
+        }).then(
+            res => {
+                res.json().then((data) => {
+                    console.log(data.message);
+                    return data.message;
+                })
+            }
+        )
+        console.log("Response: ", response);
+        setNumber(userNumber+1);
         console.log(chatHistory);
     }
 
@@ -59,7 +93,7 @@ const Chat = () => {
                         return <UserMessage message={chat.message} />
                     }
                     else {
-                        return <BotMessage message={chat.message} />
+                        return <BotMessage message={chat.data} />
                     }
                 })}
             </div>
